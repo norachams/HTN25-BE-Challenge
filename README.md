@@ -37,7 +37,7 @@ Running the app will automatically create a hackathon.db file:
     ```bash
       python app.py
 
-6. Import Initial Data If you have downloaded the JSON file (example_data.json), import it into the database:
+6. Import Initial Data 
     ```bash
        python import_data.py
 
