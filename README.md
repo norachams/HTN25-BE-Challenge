@@ -102,7 +102,7 @@ Running the app will automatically create a hackathon.db file:
 Request: PUT /users/give-seven-food-trade
 Response: Returns the updated user data.
 
-## 4. Update User Data
+## 4. Add Scan Endpoint
 - **Endpoint:**  `POST /scan/<badge_code>`
 - **Description:** Records a new scan for a user at a given activity. If the activity doesn't exist, it is created. Also updates the user's 'updated_at' field.
 - **Payload Example:**
@@ -123,8 +123,45 @@ Request: 'POST /scan/give-seven-food-trade'
 
 ```
 
+## 5. Scan Data Endpoint
+- **Endpoint:**  `GET /scans`
+- **Description:** Returns a list of activities along with aggregated scan data (frequency). Supports optional filters:
+- `min_frequency:` Minimum number of scans required.
+- `max_frequency:` Maximum number of scans allowed.
+- `activity_category:` Filter by the activity category.
+- **Example Request:**
+`curl "http://127.0.0.1:5000/scans?min_frequency=1&activity_category=workshop`
+
+- **Example Response:**
+```json
+[
+  {
+    "activity_name": "giving_go_a_go",
+    "frequency": 28
+  },
+  {
+    "activity_name": "web_development",
+    "frequency": 41
+  },
+  {
+    "activity_name": "ai_workshop",
+    "frequency": 32
+  },
+  {
+    "activity_name": "new_workshop",
+    "frequency": 1
+  }
+]
+```
 
 
+### Future Enhancements
+**Feature Improvements:**
+Add authentication/authorization for securing API endpoints.
+Implement pagination and more advanced filtering for user and scan endpoints.
+Enhance error handling, logging, and monitoring.
 
-
+**Scalability:**
+Migrate to PostgreSQL or another robust database for handling larger datasets.
+Implement caching for frequently accessed endpoints.
 
