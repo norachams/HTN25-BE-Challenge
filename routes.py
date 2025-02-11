@@ -27,3 +27,28 @@ def get_users():
         user_list.append(user_data)
 
     return jsonify(user_list)
+
+@routes.route('/users/<string:badge_code>', methods=['GET'])
+def get_user(badge_code):
+
+    user = User.query.filter_by(badge_code=badge_code).first()
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    
+    user_data = {
+        "name": user.name,
+        "email": user.email,
+        "phone": user.phone,
+        "badge_code": user.badge_code,
+        "updated_at": user.updated_at.isoformat(),
+        "scans": [
+            {
+                "activity_name": scan.activity.name,
+                "activity_category": scan.activity.category,
+                "scanned_at": scan.scanned_at.isoformat()
+            }
+            for scan in user.scans
+        ]
+    }
+    return jsonify(user_data)
