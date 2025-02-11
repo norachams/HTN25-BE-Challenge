@@ -54,6 +54,5 @@ def import_users():
 
         print("Data import complete!")
 
-# Run the import function
 if __name__ == "__main__":
     import_users()
