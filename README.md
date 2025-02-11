@@ -155,7 +155,7 @@ Request: 'POST /scan/give-seven-food-trade'
 ```
 
 
-### Future Enhancements
+## Future Enhancements
 **Feature Improvements:**
 Add authentication/authorization for securing API endpoints.
 Implement pagination and more advanced filtering for user and scan endpoints.
